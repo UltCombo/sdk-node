@@ -47,7 +47,6 @@ module.exports = (csrf_generator, cache, requestio) ->
 			csrf_token = csrf_generator(req.session)
 			res.writeHead 302, Location: cache.oauthd_url + cache.oauthd_base + '/' + provider + '?k=' + cache.public_key + '&opts=' + encodeURIComponent(JSON.stringify({state: csrf_token})) + '&redirect_type=server&redirect_uri=' + encodeURIComponent(urlToRedirect)
 			res.end()
-			next()
 
 		auth: (provider, session, opts) ->
 			defer = Q.defer()
